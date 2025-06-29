@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'terraform/**'
+      - 'lambda/**'
+      - 'layer/**'
+
+  workflow_dispatch:  #Enables manual trigger via GitHub UI
+
 
 jobs:
   deploy:
