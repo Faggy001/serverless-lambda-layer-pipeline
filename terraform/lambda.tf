@@ -17,7 +17,7 @@ resource "aws_lambda_function" "lambda_func" {
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
 
-  layers = [aws_lambda_layer_version.utility_layer.arn]
+  layers = [aws_lambda_layer_version.utils_layer.arn]
 
   environment {
     variables = {

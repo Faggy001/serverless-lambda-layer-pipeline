@@ -38,8 +38,10 @@ jobs:
       # 📦 Package Lambda Layer
       - name: Package Lambda Layer
         run: |
+          mkdir -p layer-archive
           cd layer
-          zip -r ../layer.zip python
+          zip -r ../layer-archive/layer.zip python
+
 
       # 📦 Package Lambda Function
       - name: Package Lambda Function

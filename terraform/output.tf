@@ -7,7 +7,7 @@ output "lambda_name" {
 }
 
 output "layer_arn" {
-  value = aws_lambda_layer_version.utility_layer.arn
+  value = aws_lambda_layer_version.utils_layer.arn
 }
 
 output "sns_topic" {
