@@ -1,14 +1,13 @@
 resource "aws_lambda_function" "lambda_func" {
-  function_name    = var.lambda_function_name
-  role             = aws_iam_role.lambda_exec_role.arn
-  runtime          = "python3.11"
-  handler          = "handler.handler"
-  timeout          = 30
-  memory_size      = 128
+  function_name = var.lambda_function_name
+  role          = aws_iam_role.lambda_exec_role.arn
+  runtime       = "python3.12"
+  handler       = "handler.handler"
+  timeout       = 30
+  memory_size   = 128
 
-  filename         = data.archive_file.lambda_zip.output_path
-  source_code_hash = data.archive_file.lambda_zip.output_base64sha256
-
+  filename         = "${path.module}/../lambda-archive/lambda_function_payload.zip"
+  source_code_hash = filebase64sha256("${path.module}/../lambda-archive/lambda_function_payload.zip")
 
   layers = [aws_lambda_layer_version.utils_layer.arn]
 
@@ -20,6 +19,7 @@ resource "aws_lambda_function" "lambda_func" {
     }
   }
 }
+
 
 resource "aws_lambda_permission" "allow_s3" {
   statement_id  = "AllowS3Invoke"
