@@ -44,18 +44,12 @@ jobs:
 
 
       # 📦 Package Lambda Function
-      - name: Package Lambda Function
+      - name: Zip Lambda Function
         run: |
+          mkdir -p lambda-archive
           cd lambda
-          zip -r ../lambda.zip .
+          zip -r ../lambda-archive/lambda_function_payload.zip .
 
-      # 📁 Move Zips into Terraform folders
-      - name: Move Zips to Terraform
-        run: |
-          mkdir -p terraform/lambda-archive
-          mkdir -p terraform/layer-archive
-          mv lambda.zip terraform/lambda-archive/lambda_function_payload.zip
-          mv layer.zip terraform/layer-archive/layer.zip
 
       # 🛠️ Terraform Init, Plan, Apply
       - name: Initialize Terraform
