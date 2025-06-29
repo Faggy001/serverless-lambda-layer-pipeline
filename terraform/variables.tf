@@ -3,11 +3,6 @@ variable "region" {
   default     = "ca-central-1"
 }
 
-variable "profile" {
-  description = "AWS CLI profile"
-  default     = "default"
-}
-
 variable "bucket_name" {
   description = "S3 bucket name"
   default     = "groupb-layered-bucket"
