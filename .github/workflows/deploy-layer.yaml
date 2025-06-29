@@ -43,8 +43,6 @@ jobs:
       # Optional: install dependencies to package in layer
       - name: Package Lambda Layer
         run: |
-          mkdir -p layer/python
-          cp layer/utils.py layer/python/
           cd layer
           zip -r ../layer.zip python
 
