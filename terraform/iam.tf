@@ -28,3 +28,37 @@ resource "aws_iam_policy_attachment" "sns" {
   roles      = [aws_iam_role.lambda_exec_role.name]
   policy_arn = "arn:aws:iam::aws:policy/AmazonSNSFullAccess"
 }
+
+resource "aws_iam_policy" "s3_bucket_policy" {
+    name        = "groupb-bucket-policy"
+    description = "Allows read and write access to S3 buckets"
+
+    policy = <<EOF
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject",
+                "s3:PutObject",
+                "s3:DeleteObject"
+            ],
+            "Resource": "arn:aws:s3:::groupb-layered-bucket/*"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket"
+            ],
+            "Resource": "arn:aws:s3:::groupb-layered-bucket"
+        }
+    ]
+}
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_s3_access" {
+  role       = aws_iam_role.lambda_exec_role.name
+  policy_arn = aws_iam_policy.s3_bucket_policy.arn
+}
