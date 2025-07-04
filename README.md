@@ -12,6 +12,7 @@ Think of a Lambda Layer like a shared toolbox. Instead of putting every tool in 
 
 A Lambda Layer is a zip file that contains common code, libraries, or dependencies, which can be attached to one or more Lambda functions.
 
+![architecture](<images/week 7 architecture.png>)
 
 ✅ **Why Use Lambda Layers**?
 
